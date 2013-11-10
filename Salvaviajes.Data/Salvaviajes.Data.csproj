@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{499E4884-8D74-4A6C-82D5-25EC82575592}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Salvaviajes.Data</RootNamespace>
+    <AssemblyName>Salvaviajes.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\Auth.cs" />
+    <Compile Include="DataAccess\Interface\IAuth.cs" />
+    <Compile Include="DataAccess\Interface\IJourney.cs" />
+    <Compile Include="DataAccess\Interface\ISms.cs" />
+    <Compile Include="DataAccess\Journey.cs" />
+    <Compile Include="DataAccess\Sms.cs" />
+    <Compile Include="DataModel\Auth.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Documentary.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\HumanitarianOrganization.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Journey.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\JourneyPath.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Location.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Partial\Location.cs" />
+    <Compile Include="DataModel\SalvaviajesData.Context.cs">
+      <DependentUpon>SalvaviajesData.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataModel\SalvaviajesData.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataModel\SalvaviajesData.Designer.cs">
+      <DependentUpon>SalvaviajesData.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataModel\SMSAidGroup.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\SMSCategory.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\SMSErrorLog.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\SMSIssue.cs">
+      <DependentUpon>SalvaviajesData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Salvaviajes.DataObject\Salvaviajes.DataObject.csproj">
+      <Project>{d3a1e8bf-69e4-4925-b962-df588f4f21ea}</Project>
+      <Name>Salvaviajes.DataObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataModel\SalvaviajesData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SalvaviajesData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\SalvaviajesData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SalvaviajesData.edmx</DependentUpon>
+      <LastGenOutput>SalvaviajesData.Context.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\SalvaviajesData.edmx.diagram">
+      <DependentUpon>SalvaviajesData.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\SalvaviajesData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SalvaviajesData.edmx</DependentUpon>
+      <LastGenOutput>SalvaviajesData.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

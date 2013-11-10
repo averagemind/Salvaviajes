@@ -1,0 +1,25 @@
+﻿@using Salvaviajes.DataObject
+
+@model IEnumerable<AidGroup>
+
+@{
+    ViewBag.Title = "Current Issues";
+    Layout = "~/Views/Shared/_LayoutContent.cshtml";
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+<div class="content-details">
+    <ul>
+        @foreach (var m in Model)
+        {
+            <li>
+                <h2>@m.AidGroupName</h2>
+                <p>@m.StreetAddress</p>
+                <p>@m.CityStateZip</p>
+                <p>@m.Country</p>
+            </li>
+        }
+    </ul>
+</div>
+}

@@ -1,0 +1,65 @@
+﻿@model Salvaviajes.Web.Models.IssueModel
+
+@{
+    ViewBag.Title = "Report an Issue";
+    Layout = "~/Views/Shared/_LayoutContent.cshtml";
+}
+
+<div class="issue-details">
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Issue Information</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.IssueCategory)
+                @Html.DropDownListFor(m => m.IssueCategory, new SelectList(Model.IssueCategory, "CategoryId", "CategoryName"))
+                @Html.HiddenFor(m => m.SelectedCategory)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Severity)
+                @Html.TextBoxFor(m => m.Severity)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.StreetNumber)
+                @Html.TextBoxFor(m => m.StreetNumber)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.StreetName)
+                @Html.TextBoxFor(m => m.StreetName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.City)
+                @Html.TextBoxFor(m => m.City)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.State)
+                @Html.TextBoxFor(m => m.State)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PostalCode)
+                @Html.TextBoxFor(m => m.PostalCode)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Country)
+                @Html.TextBoxFor(m => m.Country)
+            </li>
+        </ol>
+
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.LocationDescription)
+                @Html.TextAreaFor(m => m.LocationDescription)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.IssueDescription)
+                @Html.TextAreaFor(m => m.IssueDescription)
+            </li>
+        </ol>
+        <input type="submit" value="Create" />
+    </fieldset>
+}
+</div>

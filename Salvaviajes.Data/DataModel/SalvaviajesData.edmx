@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SalvaviajesDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SalvaviajesDataModelStoreContainer">
+          <EntitySet Name="Auth" EntityType="SalvaviajesDataModel.Store.Auth" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Documentary" EntityType="SalvaviajesDataModel.Store.Documentary" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HumanitarianOrganization" EntityType="SalvaviajesDataModel.Store.HumanitarianOrganization" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Journey" EntityType="SalvaviajesDataModel.Store.Journey" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="JourneyPath" EntityType="SalvaviajesDataModel.Store.JourneyPath" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Location" EntityType="SalvaviajesDataModel.Store.Location" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SMSAidGroup" EntityType="SalvaviajesDataModel.Store.SMSAidGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SMSCategory" EntityType="SalvaviajesDataModel.Store.SMSCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SMSErrorLog" EntityType="SalvaviajesDataModel.Store.SMSErrorLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SMSIssue" EntityType="SalvaviajesDataModel.Store.SMSIssue" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Auth_HumanitarianOrganization" Association="SalvaviajesDataModel.Store.FK_Auth_HumanitarianOrganization">
+            <End Role="HumanitarianOrganization" EntitySet="HumanitarianOrganization" />
+            <End Role="Auth" EntitySet="Auth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanitarianOrganization_Location" Association="SalvaviajesDataModel.Store.FK_HumanitarianOrganization_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="HumanitarianOrganization" EntitySet="HumanitarianOrganization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_ADLocation" Association="SalvaviajesDataModel.Store.FK_Journey_ADLocation">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_AOLocation" Association="SalvaviajesDataModel.Store.FK_Journey_AOLocation">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Documentary" Association="SalvaviajesDataModel.Store.FK_Journey_Documentary">
+            <End Role="Documentary" EntitySet="Documentary" />
+            <End Role="JourneyPath" EntitySet="JourneyPath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Location" Association="SalvaviajesDataModel.Store.FK_Journey_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="JourneyPath" EntitySet="JourneyPath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_PDLocation" Association="SalvaviajesDataModel.Store.FK_Journey_PDLocation">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_POLocation" Association="SalvaviajesDataModel.Store.FK_Journey_POLocation">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyPath_Journey" Association="SalvaviajesDataModel.Store.FK_JourneyPath_Journey">
+            <End Role="Journey" EntitySet="Journey" />
+            <End Role="JourneyPath" EntitySet="JourneyPath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSAidGroup_Location" Association="SalvaviajesDataModel.Store.FK_SMSAidGroup_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="SMSAidGroup" EntitySet="SMSAidGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSIssue_Location" Association="SalvaviajesDataModel.Store.FK_SMSIssue_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="SMSIssue" EntitySet="SMSIssue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSIssue_SMSCategory" Association="SalvaviajesDataModel.Store.FK_SMSIssue_SMSCategory">
+            <End Role="SMSCategory" EntitySet="SMSCategory" />
+            <End Role="SMSIssue" EntitySet="SMSIssue" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="AuthId" />
+          </Key>
+          <Property Name="AuthId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HumanitarianOrganizationId" Type="int" Nullable="false" />
+          <Property Name="LoginName" Type="char" Nullable="false" MaxLength="30" />
+          <Property Name="PassWord" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Documentary">
+          <Key>
+            <PropertyRef Name="DocumentaryId" />
+          </Key>
+          <Property Name="DocumentaryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EnteredBy" Type="int" />
+          <Property Name="EnteredOn" Type="datetime" />
+          <Property Name="LikertScale" Type="int" />
+          <Property Name="UpVoteCounts" Type="int" />
+          <Property Name="RelatedDocumentaryId" Type="int" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="PublishedOn" Type="datetime" />
+          <Property Name="PublishedBy" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="ContentPath" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="HumanitarianOrganization">
+          <Key>
+            <PropertyRef Name="HumanitarianOrganizationId" />
+          </Key>
+          <Property Name="HumanitarianOrganizationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="Journey">
+          <Key>
+            <PropertyRef Name="JourneyId" />
+          </Key>
+          <Property Name="JourneyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ActualOrginationId" Type="int" />
+          <Property Name="ActualDestinationId" Type="int" />
+          <Property Name="ActualDepartureDate" Type="datetime" />
+          <Property Name="ActualDuration" Type="int" />
+          <Property Name="ActualNumberOfTravelers" Type="int" />
+          <Property Name="PlannedOrginationId" Type="int" />
+          <Property Name="PlannedDestinationId" Type="int" />
+          <Property Name="PlannedDepartureDate" Type="datetime" />
+          <Property Name="PlannedDuration" Type="int" />
+          <Property Name="PlannedNumberOfTravelers" Type="int" />
+          <Property Name="DocumentaryId" Type="int" />
+        </EntityType>
+        <EntityType Name="JourneyPath">
+          <Key>
+            <PropertyRef Name="JourneyPathId" />
+          </Key>
+          <Property Name="JourneyPathId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="JourneyId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="AcrrivedOn" Type="datetime" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="DocumentaryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Lat" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Lon" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="StreetNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="Country" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="Curated" Type="bit" />
+        </EntityType>
+        <EntityType Name="SMSAidGroup">
+          <Key>
+            <PropertyRef Name="AidGroupId" />
+          </Key>
+          <Property Name="AidGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AidGroupName" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="SMSCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SMSErrorLog">
+          <Key>
+            <PropertyRef Name="ErrorLogId" />
+          </Key>
+          <Property Name="ErrorLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorMessage" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="LoggedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SMSIssue">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SMSGuid" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="ReportedFrom" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="ReportedOn" Type="datetime" Nullable="false" />
+          <Property Name="LoggedOn" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="LikertScale" Type="int" />
+          <Property Name="UpVoteCounts" Type="int" />
+          <Property Name="ParentIssueId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="JourneyId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Auth_HumanitarianOrganization">
+          <End Role="HumanitarianOrganization" Type="SalvaviajesDataModel.Store.HumanitarianOrganization" Multiplicity="1" />
+          <End Role="Auth" Type="SalvaviajesDataModel.Store.Auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanitarianOrganization">
+              <PropertyRef Name="HumanitarianOrganizationId" />
+            </Principal>
+            <Dependent Role="Auth">
+              <PropertyRef Name="HumanitarianOrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanitarianOrganization_Location">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="HumanitarianOrganization" Type="SalvaviajesDataModel.Store.HumanitarianOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="HumanitarianOrganization">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_ADLocation">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Journey" Type="SalvaviajesDataModel.Store.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ActualDestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_AOLocation">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Journey" Type="SalvaviajesDataModel.Store.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ActualOrginationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Documentary">
+          <End Role="Documentary" Type="SalvaviajesDataModel.Store.Documentary" Multiplicity="0..1" />
+          <End Role="JourneyPath" Type="SalvaviajesDataModel.Store.JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documentary">
+              <PropertyRef Name="DocumentaryId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="DocumentaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Location">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="JourneyPath" Type="SalvaviajesDataModel.Store.JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_PDLocation">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Journey" Type="SalvaviajesDataModel.Store.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="PlannedDestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_POLocation">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Journey" Type="SalvaviajesDataModel.Store.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="PlannedOrginationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyPath_Journey">
+          <End Role="Journey" Type="SalvaviajesDataModel.Store.Journey" Multiplicity="0..1" />
+          <End Role="JourneyPath" Type="SalvaviajesDataModel.Store.JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="JourneyId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSAidGroup_Location">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="SMSAidGroup" Type="SalvaviajesDataModel.Store.SMSAidGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="SMSAidGroup">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSIssue_Location">
+          <End Role="Location" Type="SalvaviajesDataModel.Store.Location" Multiplicity="0..1" />
+          <End Role="SMSIssue" Type="SalvaviajesDataModel.Store.SMSIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="SMSIssue">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSIssue_SMSCategory">
+          <End Role="SMSCategory" Type="SalvaviajesDataModel.Store.SMSCategory" Multiplicity="0..1" />
+          <End Role="SMSIssue" Type="SalvaviajesDataModel.Store.SMSIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="SMSIssue">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalvaviajesDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SalvaviajesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="SMSAidGroups" EntityType="SalvaviajesDataModel.SMSAidGroup" />
+          <EntitySet Name="SMSCategories" EntityType="SalvaviajesDataModel.SMSCategory" />
+          <EntitySet Name="SMSIssues" EntityType="SalvaviajesDataModel.SMSIssue" />
+          <AssociationSet Name="FK_SMSIssue_SMSCategory" Association="SalvaviajesDataModel.FK_SMSIssue_SMSCategory">
+            <End Role="SMSCategory" EntitySet="SMSCategories" />
+            <End Role="SMSIssue" EntitySet="SMSIssues" />
+          </AssociationSet>
+          <EntitySet Name="SMSErrorLogs" EntityType="SalvaviajesDataModel.SMSErrorLog" />
+          <EntitySet Name="Auths" EntityType="SalvaviajesDataModel.Auth" />
+          <EntitySet Name="Documentaries" EntityType="SalvaviajesDataModel.Documentary" />
+          <EntitySet Name="HumanitarianOrganizations" EntityType="SalvaviajesDataModel.HumanitarianOrganization" />
+          <EntitySet Name="Journeys" EntityType="SalvaviajesDataModel.Journey" />
+          <EntitySet Name="JourneyPaths" EntityType="SalvaviajesDataModel.JourneyPath" />
+          <EntitySet Name="Locations" EntityType="SalvaviajesDataModel.Location" />
+          <AssociationSet Name="FK_Auth_HumanitarianOrganization" Association="SalvaviajesDataModel.FK_Auth_HumanitarianOrganization">
+            <End Role="HumanitarianOrganization" EntitySet="HumanitarianOrganizations" />
+            <End Role="Auth" EntitySet="Auths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Documentary" Association="SalvaviajesDataModel.FK_Journey_Documentary">
+            <End Role="Documentary" EntitySet="Documentaries" />
+            <End Role="JourneyPath" EntitySet="JourneyPaths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumanitarianOrganization_Location" Association="SalvaviajesDataModel.FK_HumanitarianOrganization_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="HumanitarianOrganization" EntitySet="HumanitarianOrganizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_ADLocation" Association="SalvaviajesDataModel.FK_Journey_ADLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_AOLocation" Association="SalvaviajesDataModel.FK_Journey_AOLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_PDLocation" Association="SalvaviajesDataModel.FK_Journey_PDLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_POLocation" Association="SalvaviajesDataModel.FK_Journey_POLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyPath_Journey" Association="SalvaviajesDataModel.FK_JourneyPath_Journey">
+            <End Role="Journey" EntitySet="Journeys" />
+            <End Role="JourneyPath" EntitySet="JourneyPaths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Location" Association="SalvaviajesDataModel.FK_Journey_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="JourneyPath" EntitySet="JourneyPaths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSAidGroup_SMSLocation1" Association="SalvaviajesDataModel.FK_SMSAidGroup_SMSLocation1">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="SMSAidGroup" EntitySet="SMSAidGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSIssue_SMSLocation1" Association="SalvaviajesDataModel.FK_SMSIssue_SMSLocation1">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="SMSIssue" EntitySet="SMSIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Documentary1" Association="SalvaviajesDataModel.FK_Journey_Documentary1">
+            <End Role="Documentary" EntitySet="Documentaries" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="SMSAidGroup">
+          <Key>
+            <PropertyRef Name="AidGroupId" />
+          </Key>
+          <Property Name="AidGroupId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AidGroupName" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="Location" Relationship="SalvaviajesDataModel.FK_SMSAidGroup_SMSLocation1" FromRole="SMSAidGroup" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="SMSCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SMSIssue">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SMSGuid" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="ReportedFrom" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="ReportedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoggedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="LikertScale" Type="Int32" />
+          <Property Name="UpVoteCounts" Type="Int32" />
+          <Property Name="ParentIssueId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Type="Int32" Name="JourneyId" />
+          <NavigationProperty Name="Location" Relationship="SalvaviajesDataModel.FK_SMSIssue_SMSLocation1" FromRole="SMSIssue" ToRole="Location" />
+        </EntityType>
+        <Association Name="FK_SMSIssue_SMSCategory">
+          <End Role="SMSCategory" Type="SalvaviajesDataModel.SMSCategory" Multiplicity="0..1" />
+          <End Role="SMSIssue" Type="SalvaviajesDataModel.SMSIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="SMSIssue">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SMSErrorLog">
+          <Key>
+            <PropertyRef Name="ErrorLogId" />
+          </Key>
+          <Property Type="Int32" Name="ErrorLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ErrorMessage" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LoggedOn" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="AuthId" />
+          </Key>
+          <Property Type="Int32" Name="AuthId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="HumanitarianOrganizationId" Nullable="false" />
+          <Property Type="String" Name="LoginName" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Type="Binary" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="CreateOn" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Documentary">
+          <Key>
+            <PropertyRef Name="DocumentaryId" />
+          </Key>
+          <Property Type="Int32" Name="DocumentaryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EnteredBy" />
+          <Property Type="DateTime" Name="EnteredOn" Precision="3" />
+          <Property Type="Int32" Name="LikertScale" />
+          <Property Type="Int32" Name="UpVoteCounts" />
+          <Property Type="Int32" Name="RelatedDocumentaryId" />
+          <Property Type="Boolean" Name="IsPublished" />
+          <Property Type="DateTime" Name="PublishedOn" Precision="3" />
+          <Property Type="Int32" Name="PublishedBy" />
+          <Property Type="String" Name="Title" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentPath" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HumanitarianOrganization">
+          <Key>
+            <PropertyRef Name="HumanitarianOrganizationId" />
+          </Key>
+          <Property Type="Int32" Name="HumanitarianOrganizationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="LocationId" />
+          <NavigationProperty Name="Auths" Relationship="SalvaviajesDataModel.FK_Auth_HumanitarianOrganization" FromRole="HumanitarianOrganization" ToRole="Auth" />
+          <NavigationProperty Name="Location" Relationship="SalvaviajesDataModel.FK_HumanitarianOrganization_Location" FromRole="HumanitarianOrganization" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Journey">
+          <Key>
+            <PropertyRef Name="JourneyId" />
+          </Key>
+          <Property Type="Int32" Name="JourneyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ActualOrginationId" />
+          <Property Type="Int32" Name="ActualDestinationId" />
+          <Property Type="DateTime" Name="ActualDepartureDate" Precision="3" />
+          <Property Type="Int32" Name="ActualDuration" />
+          <Property Type="Int32" Name="ActualNumberOfTravelers" />
+          <Property Type="Int32" Name="PlannedOrginationId" />
+          <Property Type="Int32" Name="PlannedDestinationId" />
+          <Property Type="DateTime" Name="PlannedDepartureDate" Precision="3" />
+          <Property Type="Int32" Name="PlannedDuration" />
+          <Property Type="Int32" Name="PlannedNumberOfTravelers" />
+          <NavigationProperty Name="ActualOrigination" Relationship="SalvaviajesDataModel.FK_Journey_ADLocation" FromRole="Journey" ToRole="Location" />
+          <NavigationProperty Name="ActualDestination" Relationship="SalvaviajesDataModel.FK_Journey_AOLocation" FromRole="Journey" ToRole="Location" />
+          <NavigationProperty Name="PlannedOrigination" Relationship="SalvaviajesDataModel.FK_Journey_PDLocation" FromRole="Journey" ToRole="Location" />
+          <NavigationProperty Name="PlannedDestination" Relationship="SalvaviajesDataModel.FK_Journey_POLocation" FromRole="Journey" ToRole="Location" />
+          <NavigationProperty Name="JourneyPaths" Relationship="SalvaviajesDataModel.FK_JourneyPath_Journey" FromRole="Journey" ToRole="JourneyPath" />
+          <Property Type="Int32" Name="DocumentaryId" />
+          <NavigationProperty Name="Documentary" Relationship="SalvaviajesDataModel.FK_Journey_Documentary1" FromRole="Journey" ToRole="Documentary" />
+        </EntityType>
+        <EntityType Name="JourneyPath">
+          <Key>
+            <PropertyRef Name="JourneyPathId" />
+          </Key>
+          <Property Type="Int32" Name="JourneyPathId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="JourneyId" />
+          <Property Type="Int32" Name="LocationId" />
+          <Property Type="DateTime" Name="AcrrivedOn" Precision="3" />
+          <Property Type="Int32" Name="Duration" />
+          <Property Type="Int32" Name="DocumentaryId" />
+          <NavigationProperty Name="Documentary" Relationship="SalvaviajesDataModel.FK_Journey_Documentary" FromRole="JourneyPath" ToRole="Documentary" />
+          <NavigationProperty Name="Location" Relationship="SalvaviajesDataModel.FK_Journey_Location" FromRole="JourneyPath" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Type="Int32" Name="LocationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Lat" Precision="9" Scale="6" />
+          <Property Type="Decimal" Name="Lon" Precision="9" Scale="6" />
+          <Property Type="String" Name="City" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Curated" />
+          <Property Type="String" Name="StreetName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StreetNumber" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostalCode" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Auth_HumanitarianOrganization">
+          <End Type="SalvaviajesDataModel.HumanitarianOrganization" Role="HumanitarianOrganization" Multiplicity="1" />
+          <End Type="SalvaviajesDataModel.Auth" Role="Auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumanitarianOrganization">
+              <PropertyRef Name="HumanitarianOrganizationId" />
+            </Principal>
+            <Dependent Role="Auth">
+              <PropertyRef Name="HumanitarianOrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Documentary">
+          <End Type="SalvaviajesDataModel.Documentary" Role="Documentary" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.JourneyPath" Role="JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documentary">
+              <PropertyRef Name="DocumentaryId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="DocumentaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumanitarianOrganization_Location">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.HumanitarianOrganization" Role="HumanitarianOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="HumanitarianOrganization">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_ADLocation">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ActualDestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_AOLocation">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ActualOrginationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_PDLocation">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="PlannedDestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_POLocation">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="PlannedOrginationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyPath_Journey">
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.JourneyPath" Role="JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="JourneyId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Location">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.JourneyPath" Role="JourneyPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="JourneyPath">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSAidGroup_SMSLocation1">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.SMSAidGroup" Role="SMSAidGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="SMSAidGroup">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSIssue_SMSLocation1">
+          <End Type="SalvaviajesDataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.SMSIssue" Role="SMSIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="SMSIssue">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Documentary1">
+          <End Type="SalvaviajesDataModel.Documentary" Role="Documentary" Multiplicity="0..1" />
+          <End Type="SalvaviajesDataModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documentary">
+              <PropertyRef Name="DocumentaryId" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="DocumentaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SalvaviajesDataModelStoreContainer" CdmEntityContainer="SalvaviajesEntities">
+          <EntitySetMapping Name="SMSAidGroups">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.SMSAidGroup">
+              <MappingFragment StoreEntitySet="SMSAidGroup">
+                <ScalarProperty Name="AidGroupId" ColumnName="AidGroupId" />
+                <ScalarProperty Name="AidGroupName" ColumnName="AidGroupName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSCategories">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.SMSCategory">
+              <MappingFragment StoreEntitySet="SMSCategory">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSIssues">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.SMSIssue">
+              <MappingFragment StoreEntitySet="SMSIssue">
+                <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="SMSGuid" ColumnName="SMSGuid" />
+                <ScalarProperty Name="ReportedFrom" ColumnName="ReportedFrom" />
+                <ScalarProperty Name="ReportedOn" ColumnName="ReportedOn" />
+                <ScalarProperty Name="LoggedOn" ColumnName="LoggedOn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LikertScale" ColumnName="LikertScale" />
+                <ScalarProperty Name="UpVoteCounts" ColumnName="UpVoteCounts" />
+                <ScalarProperty Name="ParentIssueId" ColumnName="ParentIssueId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSErrorLogs">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.SMSErrorLog">
+              <MappingFragment StoreEntitySet="SMSErrorLog">
+                <ScalarProperty Name="LoggedOn" ColumnName="LoggedOn" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorLogId" ColumnName="ErrorLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auths">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.Auth">
+              <MappingFragment StoreEntitySet="Auth">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="PassWord" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="HumanitarianOrganizationId" ColumnName="HumanitarianOrganizationId" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documentaries">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.Documentary">
+              <MappingFragment StoreEntitySet="Documentary">
+                <ScalarProperty Name="ContentPath" ColumnName="ContentPath" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PublishedBy" ColumnName="PublishedBy" />
+                <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="RelatedDocumentaryId" ColumnName="RelatedDocumentaryId" />
+                <ScalarProperty Name="UpVoteCounts" ColumnName="UpVoteCounts" />
+                <ScalarProperty Name="LikertScale" ColumnName="LikertScale" />
+                <ScalarProperty Name="EnteredOn" ColumnName="EnteredOn" />
+                <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+                <ScalarProperty Name="DocumentaryId" ColumnName="DocumentaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumanitarianOrganizations">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.HumanitarianOrganization">
+              <MappingFragment StoreEntitySet="HumanitarianOrganization">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HumanitarianOrganizationId" ColumnName="HumanitarianOrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Journeys">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.Journey">
+              <MappingFragment StoreEntitySet="Journey">
+                <ScalarProperty Name="DocumentaryId" ColumnName="DocumentaryId" />
+                <ScalarProperty Name="PlannedNumberOfTravelers" ColumnName="PlannedNumberOfTravelers" />
+                <ScalarProperty Name="PlannedDuration" ColumnName="PlannedDuration" />
+                <ScalarProperty Name="PlannedDepartureDate" ColumnName="PlannedDepartureDate" />
+                <ScalarProperty Name="PlannedDestinationId" ColumnName="PlannedDestinationId" />
+                <ScalarProperty Name="PlannedOrginationId" ColumnName="PlannedOrginationId" />
+                <ScalarProperty Name="ActualNumberOfTravelers" ColumnName="ActualNumberOfTravelers" />
+                <ScalarProperty Name="ActualDuration" ColumnName="ActualDuration" />
+                <ScalarProperty Name="ActualDepartureDate" ColumnName="ActualDepartureDate" />
+                <ScalarProperty Name="ActualDestinationId" ColumnName="ActualDestinationId" />
+                <ScalarProperty Name="ActualOrginationId" ColumnName="ActualOrginationId" />
+                <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JourneyPaths">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.JourneyPath">
+              <MappingFragment StoreEntitySet="JourneyPath">
+                <ScalarProperty Name="DocumentaryId" ColumnName="DocumentaryId" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="AcrrivedOn" ColumnName="AcrrivedOn" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+                <ScalarProperty Name="JourneyPathId" ColumnName="JourneyPathId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="SalvaviajesDataModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="Curated" ColumnName="Curated" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

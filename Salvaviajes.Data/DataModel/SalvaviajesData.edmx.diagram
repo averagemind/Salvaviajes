@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7bbe707442048e8b5bb95b0e0b95888" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="SalvaviajesDataModel.SMSAidGroup" Width="1.5" PointX="0.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.SMSCategory" Width="1.5" PointX="2.125" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.SMSIssue" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_SMSIssue_SMSCategory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.SMSErrorLog" Width="1.5" PointX="1.25" PointY="0.5" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.Auth" Width="2.25" PointX="3.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.Documentary" Width="2" PointX="8.75" PointY="7.375" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.HumanitarianOrganization" Width="2.25" PointX="3.75" PointY="4.25" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.Journey" Width="2.25" PointX="6.125" PointY="4.25" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.JourneyPath" Width="1.5" PointX="9" PointY="4.25" />
+        <EntityTypeShape EntityType="SalvaviajesDataModel.Location" Width="1.875" PointX="3.875" PointY="0.5" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Auth_HumanitarianOrganization" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_Documentary" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_HumanitarianOrganization_Location" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_ADLocation" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_AOLocation" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_PDLocation" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_POLocation" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_JourneyPath_Journey" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_Location" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_SMSAidGroup_SMSLocation1" ></AssociationConnector>
+        <AssociationConnector Association="SalvaviajesDataModel.FK_SMSIssue_SMSLocation1" />
+        <AssociationConnector Association="SalvaviajesDataModel.FK_Journey_Documentary1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

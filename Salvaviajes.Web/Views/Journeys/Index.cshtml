@@ -1,0 +1,38 @@
+﻿@using Salvaviajes.DataObject
+
+@model IEnumerable<JourneyStory>
+
+@{
+    ViewBag.Title = "Journey Stories";
+    Layout = "~/Views/Shared/_LayoutContent.cshtml";
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    var idx = 0;
+<div class="content-details">
+    <ul>
+        @foreach (var m in Model)
+        {
+            <li>
+                @if (!string.IsNullOrWhiteSpace(m.Content))
+                {
+                <h2>@m.Title</h2>
+                    
+                    if (idx % 2 == 0)
+                    {
+                <img src="~/Images/JourneyPathBAth.png" class="center" />
+                    }
+                    else
+                    {
+                <img src="~/Images/JourneyPathJGth.png" class="center" />
+                    }
+                    @Html.Raw(m.Content)
+                }
+            </li>
+            
+        idx++;
+        }
+    </ul>
+</div>
+}

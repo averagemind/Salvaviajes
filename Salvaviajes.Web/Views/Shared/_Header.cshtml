@@ -1,0 +1,18 @@
+﻿<ul id="nav">
+
+@if (Request.IsAuthenticated) {
+
+        <li class="nav-item"><a href="~/Home">Alert Areas</a></li>
+        <li class="nav-item"><a href="~/Issues/">Current Issues</a></li>
+        <li class="nav-item"><a href="~/Resources">Resources</a></li>
+        <li class="nav-item"><a href="~/Journeys">Journey Stories</a></li>
+    
+}
+else {
+
+        <li class="nav-item"><a href="~/Home">Alert Areas</a></li>
+        <li class="nav-item"><a href="~/Issues/Create">Report an Issue</a></li>
+        <li class="nav-item"><a href="~/Issues/Edit">Confirm an Issue</a></li>
+        <li class="nav-item"><a href="~/Journeys">Journey Stories</a></li>
+}
+</ul>
